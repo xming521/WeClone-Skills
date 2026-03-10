@@ -21,12 +21,17 @@ If the persona directory does not exist yet, use `$init-twin-profile` first to s
    If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin-profile`.
 2. Gather the minimum high-signal context.
    Include who the other person is, what the current situation is, and the recent messages that the reply must answer.
+   Write that context into two runtime files:
+   - `scene.md`: a short summary of background facts that are necessary for the reply but may not be obvious from the raw chat. Include who the other person is, the relationship, the current situation, the user's likely goal or constraint, and any reply-specific caution such as "do not commit yet".
+   - `dialogue.md`: the active message window, usually the recent turns that the candidate reply is directly answering. Keep the original wording and speaker attribution when possible.
+   Use `scene.md` for distilled context and `dialogue.md` for raw conversation. Do not dump the entire chat history into `scene.md`.
 3. Keep the clone run isolated.
    Use a separate model call or isolated agent run that receives only the rendered clone prompt. Do not mix in unrelated notes, hidden scratchpad, or other task memory from the current thread.
 4. Load persona files.
    Use `profile.md` for stable identity, personality, values, worldview, and decision logic; `state.md` for recent status and goals; `persona_examples.md` for style imitation plus behavioral evidence; and `guardrails.md` for hard limits. Load extra `*.md` files in the persona directory only when they materially improve the reply.
 5. Render the prompt package.
    Run `python3 skills/twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `weclone/`; pass `--persona-dir <dir>` only when overriding that location.
+   The script injects `scene.md` into the `Runtime Scene` section of the final prompt and `dialogue.md` into `Active Dialogue`. The clone model should see those rendered sections, not the original surrounding task thread.
 6. Invoke the model with the rendered prompt only.
    Treat the rendered prompt as the entire allowed context for that generation.
 7. Return a reviewable draft.
@@ -61,6 +66,31 @@ Read `references/guardrails.md` when a request is close to the boundary or when 
 - `scripts/render_clone_prompt.py`: compile persona files and runtime context into one isolated prompt package, reading `weclone/` by default.
 - `references/runtime-workflow.md`: detailed execution sequence, isolation rules, and failure handling.
 - `references/guardrails.md`: hard blocks, safe substitutions, and review risk tags.
+
+## Runtime Context Format
+
+Use a short `scene.md` like:
+
+```md
+# Scene
+
+Other person: former coworker, familiar but not close lately.
+Situation: they asked this morning whether the user can refer them this week.
+User goal: stay polite and leave room without making a commitment.
+Reply caution: do not promise a referral or a timeline.
+```
+
+Use a short `dialogue.md` like:
+
+```md
+# Dialogue
+
+Them: Hey, are you free to refer me for the role we talked about?
+User: I saw your message just now.
+Them: No rush, but they are moving quickly this week.
+```
+
+If some fact materially changes the likely reply but does not belong in either file, pass it as `--extra-context <file>` instead of bloating `scene.md`.
 
 ## Output Contract
 
