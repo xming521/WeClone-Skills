@@ -22,7 +22,7 @@ def default_persona_dir() -> Path:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Create a persona directory for twin-reply.",
+        description="Create a persona directory for init-twin-profile.",
     )
     parser.add_argument(
         "output_dir",

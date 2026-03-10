@@ -1,2 +1,2 @@
-# WeClone-Skill
-A skill that helps your agent call a digital twin to draft review-gated replies by modeling messaging style, personality, values, worldview, and decision habits.
+# Twin Skills
+This repo separates the workflow into two skills: `init-twin-profile` scaffolds the persona pack, and `twin-reply` uses an existing persona pack to draft review-gated digital twin replies.

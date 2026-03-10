@@ -1,6 +1,6 @@
 ---
 name: twin-reply
-description: Build a review-gated digital clone reply from persona markdown, persona examples, and live conversation context. Use when you need to imitate a specific user's chat style, draft a reply on the user's behalf, generate a persona-consistent message candidate, or run a digital clone workflow with mandatory approval before any outbound send.
+description: Build a review-gated digital twin reply from persona markdown, persona examples, and live conversation context. Use when you need to imitate a specific user's chat style, draft a reply on the user's behalf, or generate a persona-consistent message candidate from an existing persona pack.
 ---
 
 # Twin Reply
@@ -9,27 +9,29 @@ Assemble an isolated prompt package that lets a separate model imitate one user'
 
 ## Expected Inputs
 
-- A persona directory. Default to `weclone/` at the repo root, containing `profile.md`, `persona_examples.md`, `guardrails.md`, and optional `state.md`.
+- A prepared persona directory. Default to `weclone/` at the repo root, containing `profile.md`, `persona_examples.md`, `guardrails.md`, and optional `state.md`.
 - Runtime context: one short scene summary and one dialogue window.
 - Explicit approval from the user before any outbound send.
 
-If the persona directory does not exist, run `python3 skills/twin-reply/scripts/init_clone_profile.py --user-name <name>` to initialize the default `weclone/` directory, or pass a custom target dir if needed. Ask the user to fill the generated templates before drafting.
+If the persona directory does not exist yet, use `$init-twin-profile` first to scaffold the default `weclone/` directory, then ask the user to fill the generated templates before drafting.
 
 ## Core Workflow
 
-1. Gather the minimum high-signal context.
+1. Confirm that the persona pack already exists.
+   If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin-profile`.
+2. Gather the minimum high-signal context.
    Include who the other person is, what the current situation is, and the recent messages that the reply must answer.
-2. Keep the clone run isolated.
+3. Keep the clone run isolated.
    Use a separate model call or isolated agent run that receives only the rendered clone prompt. Do not mix in unrelated notes, hidden scratchpad, or other task memory from the current thread.
-3. Load persona files.
+4. Load persona files.
    Use `profile.md` for stable identity, personality, values, worldview, and decision logic; `state.md` for recent status and goals; `persona_examples.md` for style imitation plus behavioral evidence; and `guardrails.md` for hard limits. Load extra `*.md` files in the persona directory only when they materially improve the reply.
-4. Render the prompt package.
+5. Render the prompt package.
    Run `python3 skills/twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `weclone/`; pass `--persona-dir <dir>` only when overriding that location.
-5. Invoke the model with the rendered prompt only.
+6. Invoke the model with the rendered prompt only.
    Treat the rendered prompt as the entire allowed context for that generation.
-6. Return a reviewable draft.
+7. Return a reviewable draft.
    Show the user the candidate reply plus risk flags. Do not send on the user's behalf yet.
-7. Send only after explicit approval.
+8. Send only after explicit approval.
    If the user edits or rejects the draft, revise it and repeat the review step.
 
 ## Persona Modeling Standard
@@ -56,11 +58,9 @@ Read `references/guardrails.md` when a request is close to the boundary or when 
 
 ## Files And Resources
 
-- `scripts/init_clone_profile.py`: scaffold the default `weclone/` persona directory from bundled templates.
 - `scripts/render_clone_prompt.py`: compile persona files and runtime context into one isolated prompt package, reading `weclone/` by default.
 - `references/runtime-workflow.md`: detailed execution sequence, isolation rules, and failure handling.
 - `references/guardrails.md`: hard blocks, safe substitutions, and review risk tags.
-- `assets/persona-pack/`: starter markdown templates for the persona directory.
 
 ## Output Contract
 

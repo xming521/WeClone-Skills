@@ -1,4 +1,4 @@
 interface:
   display_name: "Twin Reply"
-  short_description: "Call a digital twin to draft a review-gated reply"
-  default_prompt: "Use $twin-reply to assemble a review-gated digital twin reply from persona files and chat context."
+  short_description: "Draft a review-gated reply from an existing digital twin"
+  default_prompt: "Use $twin-reply to assemble a review-gated digital twin reply from an existing persona pack and chat context."
