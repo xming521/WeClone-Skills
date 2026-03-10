@@ -1,5 +1,5 @@
 ---
-name: init-twin-profile
+name: init-twin
 description: Scaffold a digital twin persona directory with markdown templates such as profile, state, persona examples, and guardrails. Use when the user wants to initialize, bootstrap, reset, or regenerate the persona files that twin-reply will read.
 ---
 
@@ -18,7 +18,7 @@ Create or refresh the markdown persona pack for a user's digital twin. This skil
 1. Check whether the target persona directory already exists.
    If files already exist, do not overwrite them unless the user explicitly asks for regeneration.
 2. Scaffold the persona pack.
-   Run `python3 skills/init-twin-profile/scripts/init_twin_profile.py --user-name <name> [output_dir]`.
+   Run `python3 skills/init-twin/scripts/init_twin_profile.py --user-name <name> [output_dir]`.
 3. Regenerate only with explicit overwrite approval.
    Add `--force` only when the user clearly wants to replace existing files.
 4. Hand off to reply generation.

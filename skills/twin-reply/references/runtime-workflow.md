@@ -23,7 +23,7 @@ If the runtime cannot guarantee that isolation, stop and tell the user you can o
 ## Execution Sequence
 
 1. Verify the default persona directory `weclone/` exists, unless the run explicitly uses another `--persona-dir`.
-2. If it does not exist yet, stop and hand off to `$init-twin-profile`.
+2. If it does not exist yet, stop and hand off to `$init-twin`.
 3. Confirm that the persona files are filled with real content rather than placeholders.
    Check that they capture deeper traits such as conflict style, priorities, and worldview, not only favorite phrases.
 4. Capture the current scene in a short markdown file.
@@ -74,7 +74,7 @@ Prefer a three-part result:
 
 ## Failure Handling
 
-- Missing persona pack: hand off to `$init-twin-profile` and stop until the user fills the templates.
+- Missing persona pack: hand off to `$init-twin` and stop until the user fills the templates.
 - Missing scene or dialogue: ask for the missing input instead of guessing.
 - Guardrail conflict: produce a safer fallback draft or stop with a clear reason.
 - Value conflict: preserve the user's stable values and boundaries over stylistic mimicry.

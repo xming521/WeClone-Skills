@@ -1,0 +1,4 @@
+interface:
+  display_name: "Init Twin Profile"
+  short_description: "Scaffold the persona files for a digital twin"
+  default_prompt: "Use $init-twin to create or refresh the markdown persona pack that $twin-reply will read."

@@ -13,12 +13,12 @@ Assemble an isolated prompt package that lets a separate model imitate one user'
 - Runtime context: one short scene summary and one dialogue window.
 - Explicit approval from the user before any outbound send.
 
-If the persona directory does not exist yet, use `$init-twin-profile` first to scaffold the default `weclone/` directory, then ask the user to fill the generated templates before drafting.
+If the persona directory does not exist yet, use `$init-twin` first to scaffold the default `weclone/` directory, then ask the user to fill the generated templates before drafting.
 
 ## Core Workflow
 
 1. Confirm that the persona pack already exists.
-   If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin-profile`.
+   If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin`.
 2. Gather the minimum high-signal context.
    Include who the other person is, what the current situation is, and the recent messages that the reply must answer.
    Write that context into two runtime files:
