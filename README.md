@@ -1,2 +1,2 @@
 # WeClone-Skill
-A skill that helps your agent become your digital twin by modeling not just messaging style, but also personality, values, worldview, and decision habits.
+A skill that helps your agent call a digital twin to draft review-gated replies by modeling messaging style, personality, values, worldview, and decision habits.

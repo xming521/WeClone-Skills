@@ -1,9 +1,9 @@
 ---
-name: weclone-skill
+name: twin-reply
 description: Build a review-gated digital clone reply from persona markdown, persona examples, and live conversation context. Use when you need to imitate a specific user's chat style, draft a reply on the user's behalf, generate a persona-consistent message candidate, or run a digital clone workflow with mandatory approval before any outbound send.
 ---
 
-# WeClone Skill
+# Twin Reply
 
 Assemble an isolated prompt package that lets a separate model imitate one user's messaging style, personality, values, and worldview from markdown persona files and persona examples. Draft first, review second, send last.
 
@@ -13,7 +13,7 @@ Assemble an isolated prompt package that lets a separate model imitate one user'
 - Runtime context: one short scene summary and one dialogue window.
 - Explicit approval from the user before any outbound send.
 
-If the persona directory does not exist, run `python3 scripts/init_clone_profile.py --user-name <name>` to initialize the default `weclone/` directory, or pass a custom target dir if needed. Ask the user to fill the generated templates before drafting.
+If the persona directory does not exist, run `python3 skills/twin-reply/scripts/init_clone_profile.py --user-name <name>` to initialize the default `weclone/` directory, or pass a custom target dir if needed. Ask the user to fill the generated templates before drafting.
 
 ## Core Workflow
 
@@ -24,7 +24,7 @@ If the persona directory does not exist, run `python3 scripts/init_clone_profile
 3. Load persona files.
    Use `profile.md` for stable identity, personality, values, worldview, and decision logic; `state.md` for recent status and goals; `persona_examples.md` for style imitation plus behavioral evidence; and `guardrails.md` for hard limits. Load extra `*.md` files in the persona directory only when they materially improve the reply.
 4. Render the prompt package.
-   Run `python3 scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `weclone/`; pass `--persona-dir <dir>` only when overriding that location.
+   Run `python3 skills/twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `weclone/`; pass `--persona-dir <dir>` only when overriding that location.
 5. Invoke the model with the rendered prompt only.
    Treat the rendered prompt as the entire allowed context for that generation.
 6. Return a reviewable draft.

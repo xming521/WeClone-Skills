@@ -1,4 +1,4 @@
-# WeClone Guardrails
+# Twin Reply Guardrails
 
 ## Hard Blocks
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render an isolated prompt package for the WeClone workflow."""
+"""Render an isolated prompt package for the Twin Reply workflow."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ OPTIONAL_PERSONA_FILES = [
 
 
 def default_persona_dir() -> Path:
-    return Path(__file__).resolve().parent.parent.parent / "weclone"
+    return Path(__file__).resolve().parent.parent.parent.parent / "weclone"
 
 
 def parse_args() -> argparse.Namespace:
@@ -98,7 +98,7 @@ def build_prompt(
     extra_sections: list[tuple[str, str]],
 ) -> str:
     parts = [
-        "# WeClone Isolated Prompt",
+        "# Twin Reply Isolated Prompt",
         (
             "Generate a candidate reply that imitates the user described below. "
             "Treat this document as the full allowed context for the run. "

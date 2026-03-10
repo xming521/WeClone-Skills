@@ -17,12 +17,12 @@ TEMPLATE_NAMES = [
 
 
 def default_persona_dir() -> Path:
-    return Path(__file__).resolve().parent.parent.parent / "weclone"
+    return Path(__file__).resolve().parent.parent.parent.parent / "weclone"
 
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Create a persona directory for weclone-skill.",
+        description="Create a persona directory for twin-reply.",
     )
     parser.add_argument(
         "output_dir",

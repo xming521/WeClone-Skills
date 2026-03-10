@@ -1,4 +1,0 @@
-interface:
-  display_name: "WeClone Skill"
-  short_description: "Build and run a review-gated digital clone"
-  default_prompt: "Use $weclone-skill to assemble a review-gated digital clone reply from persona files and chat context."
