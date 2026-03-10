@@ -65,13 +65,12 @@ If the examples and the profile disagree, do not blindly mimic wording. Resolve 
 - Prefer low-commitment language when the safe reply is unclear.
 - Stop at draft stage if the runtime cannot guarantee a human review step before sending.
 
-Read `references/guardrails.md` when a request is close to the boundary or when the other party is pressuring for a commitment.
+When a request is close to the boundary or when the other party is pressuring for a commitment, review the persona pack's `guardrails.md` first and bias toward a shorter, safer draft.
 
 ## Files And Resources
 
 - `scripts/render_clone_prompt.py`: compile persona files and runtime context into one isolated prompt package, reading `weclone/` by default.
 - `references/runtime-workflow.md`: detailed execution sequence, isolation rules, and failure handling.
-- `references/guardrails.md`: hard blocks, safe substitutions, and review risk tags.
 
 ## Runtime Context Format
 
