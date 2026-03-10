@@ -19,14 +19,18 @@ OPTIONAL_PERSONA_FILES = [
 ]
 
 
+def default_persona_dir() -> Path:
+    return Path(__file__).resolve().parent.parent.parent / "weclone"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Combine persona markdown and runtime context into one prompt.",
     )
     parser.add_argument(
         "--persona-dir",
-        required=True,
-        help="Directory containing persona markdown files",
+        default=str(default_persona_dir()),
+        help="Directory containing persona markdown files (default: repo-root/weclone)",
     )
     parser.add_argument(
         "--scene",

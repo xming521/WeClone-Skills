@@ -9,11 +9,11 @@ Assemble an isolated prompt package that lets a separate model imitate one user'
 
 ## Expected Inputs
 
-- A persona directory. Prefer `profile.md`, `persona_examples.md`, `guardrails.md`, and optional `state.md`.
+- A persona directory. Default to `weclone/` at the repo root, containing `profile.md`, `persona_examples.md`, `guardrails.md`, and optional `state.md`.
 - Runtime context: one short scene summary and one dialogue window.
 - Explicit approval from the user before any outbound send.
 
-If the persona directory does not exist, run `python3 scripts/init_clone_profile.py <target-dir> --user-name <name>` and ask the user to fill the generated templates before drafting.
+If the persona directory does not exist, run `python3 scripts/init_clone_profile.py --user-name <name>` to initialize the default `weclone/` directory, or pass a custom target dir if needed. Ask the user to fill the generated templates before drafting.
 
 ## Core Workflow
 
@@ -24,7 +24,7 @@ If the persona directory does not exist, run `python3 scripts/init_clone_profile
 3. Load persona files.
    Use `profile.md` for stable identity, personality, values, worldview, and decision logic; `state.md` for recent status and goals; `persona_examples.md` for style imitation plus behavioral evidence; and `guardrails.md` for hard limits. Load extra `*.md` files in the persona directory only when they materially improve the reply.
 4. Render the prompt package.
-   Run `python3 scripts/render_clone_prompt.py --persona-dir <dir> --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`.
+   Run `python3 scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `weclone/`; pass `--persona-dir <dir>` only when overriding that location.
 5. Invoke the model with the rendered prompt only.
    Treat the rendered prompt as the entire allowed context for that generation.
 6. Return a reviewable draft.
@@ -56,8 +56,8 @@ Read `references/guardrails.md` when a request is close to the boundary or when 
 
 ## Files And Resources
 
-- `scripts/init_clone_profile.py`: scaffold a persona directory from bundled templates.
-- `scripts/render_clone_prompt.py`: compile persona files and runtime context into one isolated prompt package.
+- `scripts/init_clone_profile.py`: scaffold the default `weclone/` persona directory from bundled templates.
+- `scripts/render_clone_prompt.py`: compile persona files and runtime context into one isolated prompt package, reading `weclone/` by default.
 - `references/runtime-workflow.md`: detailed execution sequence, isolation rules, and failure handling.
 - `references/guardrails.md`: hard blocks, safe substitutions, and review risk tags.
 - `assets/persona-pack/`: starter markdown templates for the persona directory.

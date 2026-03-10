@@ -2,7 +2,7 @@
 
 ## Minimum Inputs
 
-- A persona directory with `profile.md`, `persona_examples.md`, and `guardrails.md`
+- A persona directory at `weclone/` by default, with `profile.md`, `persona_examples.md`, and `guardrails.md`
 - A short scene summary
 - The active dialogue window
 - Optional extra context files only when they change the likely reply
@@ -22,7 +22,7 @@ If the runtime cannot guarantee that isolation, stop and tell the user you can o
 
 ## Execution Sequence
 
-1. Verify the persona directory exists.
+1. Verify the default persona directory `weclone/` exists, unless the run explicitly uses another `--persona-dir`.
 2. Initialize it with `scripts/init_clone_profile.py` if it does not exist yet.
 3. Confirm that the persona files are filled with real content rather than placeholders.
    Check that they capture deeper traits such as conflict style, priorities, and worldview, not only favorite phrases.
@@ -43,7 +43,7 @@ Prefer a three-part result:
 
 ## Failure Handling
 
-- Missing persona pack: initialize the templates and stop until the user fills them.
+- Missing persona pack: initialize `weclone/` with the templates and stop until the user fills them.
 - Missing scene or dialogue: ask for the missing input instead of guessing.
 - Guardrail conflict: produce a safer fallback draft or stop with a clear reason.
 - Value conflict: preserve the user's stable values and boundaries over stylistic mimicry.

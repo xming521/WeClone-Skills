@@ -16,11 +16,20 @@ TEMPLATE_NAMES = [
 ]
 
 
+def default_persona_dir() -> Path:
+    return Path(__file__).resolve().parent.parent.parent / "weclone"
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Create a persona directory for weclone-skill.",
     )
-    parser.add_argument("output_dir", help="Directory to create or populate")
+    parser.add_argument(
+        "output_dir",
+        nargs="?",
+        default=str(default_persona_dir()),
+        help="Directory to create or populate (default: repo-root/weclone)",
+    )
     parser.add_argument(
         "--user-name",
         default="User",
