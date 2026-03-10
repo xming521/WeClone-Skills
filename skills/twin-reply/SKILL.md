@@ -42,34 +42,16 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
 - Load persona files intentionally.
   Use `profile.md` for stable identity, personality, values, worldview, and decision logic; `state.md` for recent status and goals; `persona_examples.md` for style imitation plus behavioral evidence; and `guardrails.md` for hard limits. Load extra `*.md` files in the persona directory only when they materially improve the reply.
 
-## Persona Fidelity Priority
-
-This section is for creating, checking, or resolving conflicts in the persona pack. It is not a separate runtime step in reply generation.
-
-When filling or evaluating the persona pack, prefer this order of fidelity:
-
-1. Boundaries and safety constraints
-2. `persona_examples.md`
-3. Values and worldview
-4. Personality and conflict style
-5. Habits and conversational preferences
-6. Surface tone and phrasing
-
-If the examples and the profile disagree, do not blindly mimic wording. Resolve the conflict by preserving the person's stable boundaries first, then follow the behavioral evidence in `persona_examples.md`, then fall back to the profile's stated values and decision logic.
-
 ## Guardrails
 
-- Refuse or soften any wording that promises actions, money, attendance, delivery, or timelines on the user's behalf.
-- Exclude private information such as contact details, addresses, finances, credentials, unpublished matters, or anything the user would not want forwarded.
-- Refuse insulting, humiliating, defamatory, manipulative, or otherwise reputation-damaging content.
-- Prefer low-commitment language when the safe reply is unclear.
-- Stop at draft stage if the runtime cannot guarantee a human review step before sending.
-
-When a request is close to the boundary or when the other party is pressuring for a commitment, review the persona pack's `guardrails.md` first and bias toward a shorter, safer draft.
+- Treat `guardrails.md` as the persona pack's source of truth for hard limits.
+- The renderer template adds runtime guardrails for promises, privacy, reputation, ambiguity, and reviewer handoff.
+- If the request is close to the boundary, bias toward a shorter, safer draft and stop at draft stage unless a human review step is guaranteed.
 
 ## Files And Resources
 
-- `scripts/render_clone_prompt.py`: compile persona files and runtime context into one isolated prompt package, reading `weclone/` by default.
+- `assets/clone_prompt_template.md`: single source of truth for the isolated clone prompt seen by the downstream model.
+- `scripts/render_clone_prompt.py`: compile persona files and runtime context into the template, reading `weclone/` by default.
 - `references/runtime-workflow.md`: detailed execution sequence, isolation rules, and failure handling.
 
 ## Runtime Context Format
@@ -100,10 +82,6 @@ If some fact materially changes the likely reply but does not belong in either f
 
 ## Output Contract
 
-Use this skill to produce a candidate reply for review, not a silent auto-send. Prefer a structured review handoff with:
-
-- `DRAFT_REPLY`
-- `RISK_FLAGS`
-- `REVIEW_NOTE`
+Use this skill to produce a candidate reply for review, not a silent auto-send. The exact handoff structure is defined in `assets/clone_prompt_template.md`.
 
 If the user asks to automate sending, keep the approval gate in place and make the send step conditional on explicit confirmation.

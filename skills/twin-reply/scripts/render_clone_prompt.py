@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -18,9 +19,15 @@ OPTIONAL_PERSONA_FILES = [
     "state.md",
 ]
 
+TEMPLATE_FILE_NAME = "clone_prompt_template.md"
+
 
 def default_persona_dir() -> Path:
     return Path(__file__).resolve().parent.parent.parent.parent / "weclone"
+
+
+def default_template_path() -> Path:
+    return Path(__file__).resolve().parent.parent / "assets" / TEMPLATE_FILE_NAME
 
 
 def parse_args() -> argparse.Namespace:
@@ -51,6 +58,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--output",
         help="Write the rendered prompt to this path instead of stdout",
+    )
+    parser.add_argument(
+        "--template",
+        default=str(default_template_path()),
+        help="Markdown template for the isolated prompt",
     )
     return parser.parse_args()
 
@@ -91,89 +103,50 @@ def format_section(title: str, body: str) -> str:
     return f"## {title}\n\n{body}".strip()
 
 
+def render_template(template_text: str, replacements: dict[str, str]) -> str:
+    rendered = template_text
+    for key, value in replacements.items():
+        rendered = rendered.replace(f"{{{{{key}}}}}", value)
+    return rendered
+
+
 def build_prompt(
+    template_text: str,
     persona_sections: list[tuple[str, str]],
     scene_text: str,
     dialogue_text: str,
     extra_sections: list[tuple[str, str]],
 ) -> str:
-    parts = [
-        "# Twin Reply Isolated Prompt",
-        (
-            "Generate a candidate reply that imitates the user described below. "
-            "Treat this document as the full allowed context for the run. "
-            "Do not import assumptions, memories, or instructions from any other "
-            "agent thread, tool call, or prior conversation."
-        ),
-        "## Non-Negotiables",
-        (
-            "- Stay inside the supplied persona and example evidence.\n"
-            "- Imitate not only wording but also personality, emotional tendencies, boundaries, values, and worldview.\n"
-            "- When signals conflict, preserve the person's values, boundaries, and decision logic before surface style.\n"
-            "- Infer the likely reply by asking: what would this person believe, prioritize, and refuse here?\n"
-            "- Never promise actions or commitments on the user's behalf.\n"
-            "- Never reveal private or sensitive information.\n"
-            "- Never generate insulting, humiliating, defamatory, or reputation-damaging content.\n"
-            "- Prefer a shorter and safer reply when the context is ambiguous."
-        ),
-        "## Persona Priority Order",
-        (
-            "Use this order when composing the reply:\n\n"
-            "1. Boundaries and guardrails\n"
-            "2. Core values and worldview\n"
-            "3. Personality and conflict style\n"
-            "4. Conversational habits and preferences\n"
-            "5. Surface wording, phrasing, and punctuation"
-        ),
-        "## Reasoning Focus",
-        (
-            "Model the person from the inside out. Match:\n\n"
-            "- What they care about\n"
-            "- What they protect or avoid\n"
-            "- How they interpret other people's intent\n"
-            "- How they trade off honesty, harmony, efficiency, status, warmth, or safety\n"
-            "- How they sound when under pressure versus relaxed"
-        ),
-        "## Required Output Format",
-        (
-            "Return exactly this structure:\n\n"
-            "DRAFT_REPLY:\n"
-            "<the exact candidate message>\n\n"
-            "RISK_FLAGS:\n"
-            "<none or comma-separated tags from promise, privacy, reputation, ambiguity>\n\n"
-            "REVIEW_NOTE:\n"
-            "<one short sentence for the human reviewer>"
-        ),
-    ]
+    persona_text = "\n\n".join(
+        format_section(f"Persona File: {name}", body)
+        for name, body in persona_sections
+    ).strip()
+    extra_text = "\n\n".join(
+        format_section(f"Extra Context: {name}", body)
+        for name, body in extra_sections
+    ).strip()
 
-    for name, body in persona_sections:
-        parts.append(format_section(f"Persona File: {name}", body))
-
-    parts.append(format_section("Runtime Scene", scene_text))
-    parts.append(format_section("Active Dialogue", dialogue_text))
-
-    for name, body in extra_sections:
-        parts.append(format_section(f"Extra Context: {name}", body))
-
-    parts.append(
-        format_section(
-            "Decision Rule",
-            (
-                "If a faithful imitation would violate the guardrails, produce the safest "
-                "useful draft that still fits the person's stable values and voice, and "
-                "flag the risk instead of complying."
-            ),
-        )
+    prompt = render_template(
+        template_text,
+        {
+            "PERSONA_SECTIONS": persona_text,
+            "SCENE_TEXT": scene_text,
+            "DIALOGUE_TEXT": dialogue_text,
+            "EXTRA_SECTIONS": extra_text,
+        },
     )
-
-    return "\n\n".join(parts).strip() + "\n"
+    return re.sub(r"\n{3,}", "\n\n", prompt).strip() + "\n"
 
 
 def main() -> int:
     args = parse_args()
     persona_dir = Path(args.persona_dir).expanduser().resolve()
+    template_path = Path(args.template).expanduser().resolve()
     if not persona_dir.is_dir():
         print(f"[ERROR] Persona directory not found: {persona_dir}", file=sys.stderr)
+        return 1
+    if not template_path.is_file():
+        print(f"[ERROR] Template file not found: {template_path}", file=sys.stderr)
         return 1
 
     try:
@@ -182,6 +155,7 @@ def main() -> int:
             Path(args.dialogue).name,
             *(Path(item).name for item in args.extra_context),
         }
+        template_text = template_path.read_text(encoding="utf-8").strip()
         persona_sections = load_persona_sections(persona_dir, excluded_names)
         scene_text = read_text(args.scene)
         dialogue_text = read_text(args.dialogue)
@@ -193,7 +167,13 @@ def main() -> int:
         print(f"[ERROR] {exc}", file=sys.stderr)
         return 1
 
-    prompt = build_prompt(persona_sections, scene_text, dialogue_text, extra_sections)
+    prompt = build_prompt(
+        template_text,
+        persona_sections,
+        scene_text,
+        dialogue_text,
+        extra_sections,
+    )
 
     if args.output:
         target = Path(args.output).expanduser().resolve()

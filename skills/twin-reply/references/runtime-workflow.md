@@ -31,7 +31,7 @@ If the runtime cannot guarantee that isolation, stop and tell the user you can o
 5. Capture the current dialogue in a short markdown file.
    This is usually `dialogue.md`. It should contain the recent message turns the model must answer directly. Preserve speaker labels and wording where possible instead of paraphrasing.
 6. Render the prompt with `skills/twin-reply/scripts/render_clone_prompt.py`.
-   The renderer places `scene.md` under `Runtime Scene` and `dialogue.md` under `Active Dialogue` in the isolated prompt. Those rendered sections are how the runtime context reaches the clone model.
+   The renderer fills `skills/twin-reply/assets/clone_prompt_template.md`, placing `scene.md` under `Runtime Scene` and `dialogue.md` under `Active Dialogue`. Those rendered sections are how the runtime context reaches the clone model.
 7. Invoke the separate model with the rendered prompt only.
 8. Present the model output to the user for review.
 9. Send only after explicit approval.
@@ -67,7 +67,7 @@ Client: I need to update my team this afternoon.
 
 ## Review Handoff
 
-Prefer a three-part result:
+Prefer the structured review handoff defined by the renderer template:
 
 - `DRAFT_REPLY`: the exact message candidate
 - `RISK_FLAGS`: `none` or a comma-separated list from `promise`, `privacy`, `reputation`, `ambiguity`
