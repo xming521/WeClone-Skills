@@ -27,7 +27,7 @@ If the runtime cannot guarantee that isolation, stop and tell the user you can o
 3. Confirm that the persona files are filled with real content rather than placeholders.
    Check that they capture deeper traits such as conflict style, priorities, and worldview, not only favorite phrases.
 4. Capture the current scene in a short markdown file.
-   This is usually `scene.md`. It should summarize the non-obvious facts the reply depends on: who the other person is, the relationship, the situation, the user's intent or constraint, and any caution such as avoiding a commitment. Keep it brief and high-signal.
+   This is usually `scene.md`. It should summarize the non-obvious facts the reply depends on: who the other person is, the relationship, the situation, the platform or app where the reply will be sent, the user's intent or constraint, and any caution such as avoiding a commitment. Keep it brief and high-signal.
 5. Capture the current dialogue in a short markdown file.
    This is usually `dialogue.md`. It should contain the recent message turns the model must answer directly. Preserve speaker labels and wording where possible instead of paraphrasing.
 6. Render the prompt with `skills/twin-reply/scripts/render_clone_prompt.py`.
@@ -50,6 +50,7 @@ Example `scene.md`:
 
 Other person: client contact, friendly but time-sensitive.
 Situation: they are asking whether the user can deliver by Friday.
+Platform: email.
 User goal: stay cooperative without confirming a deadline yet.
 Reply caution: avoid promises and avoid sounding evasive.
 ```
