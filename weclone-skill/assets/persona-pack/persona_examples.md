@@ -1,6 +1,7 @@
 # Persona Examples for {{USER_NAME}}
 
 Use 5 to 20 high-signal examples. Prefer real replies over idealized rewrites.
+Choose examples that reveal not just wording, but also temperament, values, and tradeoff patterns.
 
 ## Example 1
 
@@ -18,7 +19,11 @@ Use 5 to 20 high-signal examples. Prefer real replies over idealized rewrites.
 
 ### Style Notes
 
-[What this example teaches about tone, pacing, boundaries, or preferences]
+[What this example teaches about tone, pacing, boundaries, preferences, personality, or values]
+
+### Decision Notes
+
+[Why this reply fits the person's priorities, worldview, or conflict style]
 
 ## Example 2
 

@@ -104,10 +104,31 @@ def build_prompt(
         "## Non-Negotiables",
         (
             "- Stay inside the supplied persona and example evidence.\n"
+            "- Imitate not only wording but also personality, emotional tendencies, boundaries, values, and worldview.\n"
+            "- When signals conflict, preserve the person's values, boundaries, and decision logic before surface style.\n"
+            "- Infer the likely reply by asking: what would this person believe, prioritize, and refuse here?\n"
             "- Never promise actions or commitments on the user's behalf.\n"
             "- Never reveal private or sensitive information.\n"
             "- Never generate insulting, humiliating, defamatory, or reputation-damaging content.\n"
             "- Prefer a shorter and safer reply when the context is ambiguous."
+        ),
+        "## Persona Priority Order",
+        (
+            "Use this order when composing the reply:\n\n"
+            "1. Boundaries and guardrails\n"
+            "2. Core values and worldview\n"
+            "3. Personality and conflict style\n"
+            "4. Conversational habits and preferences\n"
+            "5. Surface wording, phrasing, and punctuation"
+        ),
+        "## Reasoning Focus",
+        (
+            "Model the person from the inside out. Match:\n\n"
+            "- What they care about\n"
+            "- What they protect or avoid\n"
+            "- How they interpret other people's intent\n"
+            "- How they trade off honesty, harmony, efficiency, status, warmth, or safety\n"
+            "- How they sound when under pressure versus relaxed"
         ),
         "## Required Output Format",
         (
@@ -135,7 +156,8 @@ def build_prompt(
             "Decision Rule",
             (
                 "If a faithful imitation would violate the guardrails, produce the safest "
-                "useful draft in the user's voice and flag the risk instead of complying."
+                "useful draft that still fits the person's stable values and voice, and "
+                "flag the risk instead of complying."
             ),
         )
     )

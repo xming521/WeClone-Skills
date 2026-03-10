@@ -1,11 +1,11 @@
 ---
 name: weclone-skill
-description: Build a review-gated digital clone reply from persona markdown, persona examples, and live conversation context. Use when Codex needs to imitate a specific user's chat style, draft a reply on the user's behalf, generate a persona-consistent message candidate, or run a digital clone workflow with mandatory approval before any outbound send.
+description: Build a review-gated digital clone reply from persona markdown, persona examples, and live conversation context. Use when you need to imitate a specific user's chat style, draft a reply on the user's behalf, generate a persona-consistent message candidate, or run a digital clone workflow with mandatory approval before any outbound send.
 ---
 
 # WeClone Skill
 
-Assemble an isolated prompt package that lets a separate model imitate one user's messaging style from markdown persona files and persona examples. Draft first, review second, send last.
+Assemble an isolated prompt package that lets a separate model imitate one user's messaging style, personality, values, and worldview from markdown persona files and persona examples. Draft first, review second, send last.
 
 ## Expected Inputs
 
@@ -22,7 +22,7 @@ If the persona directory does not exist, run `python3 scripts/init_clone_profile
 2. Keep the clone run isolated.
    Use a separate model call or isolated agent run that receives only the rendered clone prompt. Do not mix in unrelated notes, hidden scratchpad, or other task memory from the current thread.
 3. Load persona files.
-   Use `profile.md` for stable traits, `state.md` for recent status and goals, `persona_examples.md` for style imitation, and `guardrails.md` for hard limits. Load extra `*.md` files in the persona directory only when they materially improve the reply.
+   Use `profile.md` for stable identity, personality, values, worldview, and decision logic; `state.md` for recent status and goals; `persona_examples.md` for style imitation plus behavioral evidence; and `guardrails.md` for hard limits. Load extra `*.md` files in the persona directory only when they materially improve the reply.
 4. Render the prompt package.
    Run `python3 scripts/render_clone_prompt.py --persona-dir <dir> --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`.
 5. Invoke the model with the rendered prompt only.
@@ -31,6 +31,18 @@ If the persona directory does not exist, run `python3 scripts/init_clone_profile
    Show the user the candidate reply plus risk flags. Do not send on the user's behalf yet.
 7. Send only after explicit approval.
    If the user edits or rejects the draft, revise it and repeat the review step.
+
+## Persona Modeling Standard
+
+When filling or evaluating the persona pack, prefer this order of fidelity:
+
+1. Boundaries and safety constraints
+2. Values and worldview
+3. Personality and conflict style
+4. Habits and conversational preferences
+5. Surface tone and phrasing
+
+If the examples and the profile disagree, do not blindly mimic wording. Resolve the conflict by preserving the person's stable values and boundaries first.
 
 ## Guardrails
 

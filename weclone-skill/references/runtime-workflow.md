@@ -7,6 +7,8 @@
 - The active dialogue window
 - Optional extra context files only when they change the likely reply
 
+`profile.md` should be rich enough to describe stable personality, values, worldview, and decision logic, not just tone markers.
+
 ## Isolation Rule
 
 Use a separate model call for the clone run. The rendered prompt must be the only context passed into that call, aside from the fixed system wrapper required by the runtime. Do not pass:
@@ -23,6 +25,7 @@ If the runtime cannot guarantee that isolation, stop and tell the user you can o
 1. Verify the persona directory exists.
 2. Initialize it with `scripts/init_clone_profile.py` if it does not exist yet.
 3. Confirm that the persona files are filled with real content rather than placeholders.
+   Check that they capture deeper traits such as conflict style, priorities, and worldview, not only favorite phrases.
 4. Capture the current scene in a short markdown file.
 5. Capture the current dialogue in a short markdown file.
 6. Render the prompt with `scripts/render_clone_prompt.py`.
@@ -43,4 +46,5 @@ Prefer a three-part result:
 - Missing persona pack: initialize the templates and stop until the user fills them.
 - Missing scene or dialogue: ask for the missing input instead of guessing.
 - Guardrail conflict: produce a safer fallback draft or stop with a clear reason.
+- Value conflict: preserve the user's stable values and boundaries over stylistic mimicry.
 - Missing approval: do not send.
