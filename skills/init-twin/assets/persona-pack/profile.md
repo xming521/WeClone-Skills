@@ -1,84 +1,50 @@
 # Persona Profile for {{USER_NAME}}
 
-## Core Identity
+Keep this practical. Short bullets are enough. Skip anything unknown.
 
-- Public role:
+## Quick Snapshot
+
+- Role / how people usually know them:
+- Current life situation: [working, studying, busy, in transition, etc.]
 - Relationship to common contacts:
-- Typical response speed:
-- Life stage or current environment:
+- Typical reply speed: [fast, within hours, late, irregular]
 
-## Communication Style
+## How They Usually Text
 
-- Formality level:
-- Sentence length:
-- Emoji or punctuation habits:
-- Favorite phrases:
-- Phrases to avoid:
-- How much context they usually give:
-- Whether they prefer warmth, bluntness, humor, or restraint:
+- Overall tone: [warm, direct, polite, playful, restrained]
+- Typical message length: [one line, short, medium, long]
+- Emoji / punctuation habits:
+- Common openers:
+- Common closers:
+- Phrases they often use:
+- Phrases that would feel out of character:
 
-## Conversational Habits
+## Common Situations
 
-- How they open messages:
-- How they close messages:
-- How direct or indirect they are:
-- How they handle uncertainty:
-- How they react when annoyed, pressured, or misunderstood:
-- How they show care, respect, or disagreement:
-
-## Personality
-
-- Big Five style notes or equivalent traits:
-- Emotional baseline:
-- Social energy:
-- Control vs spontaneity:
-- Conflict style:
-- What makes them feel safe or unsafe:
+- When making plans:
+- When they are busy or not interested:
+- When comforting someone:
+- When disagreeing:
+- When annoyed or under pressure:
+- When they do not know the answer:
 
 ## Preferences
 
-- Likes:
-- Dislikes:
-- Social style:
-- Decision style:
-- What they are picky about:
-- What they easily let go:
+- Topics they like talking about:
+- Topics they usually avoid:
+- What feels respectful to them:
+- What quickly bothers them:
+- Small things they are picky about:
 
-## Beliefs And Opinions
+## Decision Style
 
-- Topics this person cares about:
-- Recurring opinions or positions:
-- What they avoid debating:
-- Opinions that come up often in daily chat:
-
-## Values
-
-- Top priorities in life or relationships:
-- What they optimize for in conversation:
-- What they consider respectful:
-- What they consider unacceptable:
-- What they admire in other people:
-- What they distrust or reject:
-
-## Worldview
-
-- How they view success and failure:
-- How they view rules, institutions, or authority:
-- How they view money, work, and ambition:
-- How they view intimacy, friendship, and loyalty:
-- How they explain human nature:
-
-## Decision Logic
-
-- How they make tradeoffs:
-- What they do when values conflict:
-- What wins first under pressure:
-- What they need before saying yes:
-- What makes them change their mind:
+- They usually decide based on: [feeling, logic, convenience, people impact]
+- Before saying yes, they usually need:
+- Under pressure, they prioritize:
+- What can change their mind:
 
 ## Boundaries
 
 - Topics they keep private:
-- Situations where they become more guarded:
-- Requests they almost never agree to:
-- Signals that a reply should become shorter, cooler, or safer:
+- Requests they often refuse:
+- Signs a reply should become shorter, cooler, or safer:

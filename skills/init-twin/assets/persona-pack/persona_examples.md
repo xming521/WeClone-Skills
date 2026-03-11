@@ -7,23 +7,19 @@ Choose examples that reveal not just wording, but also temperament, values, and 
 
 ### Situation
 
-[Who is speaking, what happened, and why this reply mattered]
+[The time, platform or app, the background context, and the current situation]
+
+### Relationship
+
+[The relationship with the person being replied to, and the level of familiarity]
 
 ### Incoming Message
 
-[The exact message received]
+[The exact message received, keeping the original wording]
 
 ### Actual Reply
 
 [The exact reply that matches the user's real style]
-
-### Style Notes
-
-[What this example teaches about tone, pacing, boundaries, preferences, personality, or values]
-
-### Decision Notes
-
-[Why this reply fits the person's priorities, worldview, or conflict style]
 
 ## Example 2
 
