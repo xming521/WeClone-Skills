@@ -1,17 +1,14 @@
-# Persona Examples for {{USER_NAME}}
-
-Use 5 to 20 high-signal examples. Prefer real replies over idealized rewrites.
-Choose examples that reveal not just wording, but also temperament, values, and tradeoff patterns.
+# Reply Examples for {{USER_NAME}}'s Twin
 
 ## Example 1
 
 ### Situation
 
-[The time, platform or app, the background context, and the current situation]
+[The time, platform or app, the background context, the current situation, etc.]
 
 ### Relationship
 
-[The relationship with the person being replied to, and the level of familiarity]
+[The relationship with the person being replied to, the level of familiarity, etc.]
 
 ### Incoming Message
 

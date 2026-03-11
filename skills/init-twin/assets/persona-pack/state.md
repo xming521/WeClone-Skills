@@ -18,5 +18,3 @@
 
 - People or situations to be careful with:
 - Topics that are sensitive right now:
-- Information that is outdated and should not be used:
-- Values or priorities that are unusually salient at the moment:
