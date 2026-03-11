@@ -21,6 +21,8 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
    If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin`.Confirm that the persona files are filled with real content rather than placeholders. 
 2. Gather the minimum high-signal context.
    Include who the other person is, what the current situation is, and the recent messages that the reply must answer.
+   Before drafting, determine whether the available context is sufficient to answer faithfully and safely.
+   If key facts are missing or the likely reply would change materially depending on missing context, stop and ask the user whether to collect more information before proceeding.
    Write that context into two runtime files:
    - `scene.md`: a short summary of background facts that are necessary for the reply but may not be obvious from the raw chat. Include who the other person is, the relationship, the current situation, the platform or app where the reply will be sent, the user's likely goal or constraint, and any reply-specific caution such as "do not commit yet".
    - `dialogue.md`: the active message window, usually the recent turns that the candidate reply is directly answering. Keep the original wording and speaker attribution when possible.
@@ -46,6 +48,7 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
 - Treat `guardrails.md` as the persona pack's source of truth for hard limits.
 - The renderer template adds runtime guardrails for promises, privacy, reputation, ambiguity, and reviewer handoff.
 - If the request is close to the boundary, bias toward a shorter, safer draft and stop at draft stage unless a human review step is guaranteed.
+- If the available context is not enough for a defensible draft, do not fill the gaps by guesswork. Ask whether to gather more information first.
 
 ## Files And Resources
 

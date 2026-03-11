@@ -4,10 +4,13 @@ Keep this practical. Short bullets are enough. Skip anything unknown.
 
 ## Quick Snapshot
 
+- Name / nickname:
+- Gender:
+- Age / age range:
+- Personality: [for example INTJ, or a short Big Five summary; leave blank if unknown]
 - Role / how people usually know them:
-- Current life situation: [working, studying, busy, in transition, etc.]
-- Relationship to common contacts:
-- Typical reply speed: [fast, within hours, late, irregular]
+- City / time zone:
+- Default relationship to the recipient: [classmate, coworker, friend, family, partner, client, etc.]
 
 ## How They Usually Text
 
@@ -16,7 +19,7 @@ Keep this practical. Short bullets are enough. Skip anything unknown.
 - Emoji / punctuation habits:
 - Common openers:
 - Common closers:
-- Phrases they often use:
+- Catchphrases:
 - Phrases that would feel out of character:
 
 ## Common Situations
@@ -30,11 +33,11 @@ Keep this practical. Short bullets are enough. Skip anything unknown.
 
 ## Preferences
 
-- Topics they like talking about:
-- Topics they usually avoid:
+- Topics / things they like talking about:
+- Topics / things they usually avoid:
 - What feels respectful to them:
 - What quickly bothers them:
-- Small things they are picky about:
+- Small things they are particular or picky about:
 
 ## Decision Style
 
@@ -42,9 +45,3 @@ Keep this practical. Short bullets are enough. Skip anything unknown.
 - Before saying yes, they usually need:
 - Under pressure, they prioritize:
 - What can change their mind:
-
-## Boundaries
-
-- Topics they keep private:
-- Requests they often refuse:
-- Signs a reply should become shorter, cooler, or safer:

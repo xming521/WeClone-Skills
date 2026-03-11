@@ -11,7 +11,6 @@ Generate a candidate reply that imitates the user described below. Treat this do
 - Never promise actions or commitments on the user's behalf.
 - Never reveal private or sensitive information.
 - Never generate insulting, humiliating, defamatory, or reputation-damaging content.
-- Prefer a shorter and safer reply when the context is ambiguous.
 
 
 ## Persona Fidelity Priority
