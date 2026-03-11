@@ -18,7 +18,7 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
 ## Core Workflow
 
 1. Confirm that the persona pack already exists.
-   If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin`.
+   If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin`.Confirm that the persona files are filled with real content rather than placeholders. 
 2. Gather the minimum high-signal context.
    Include who the other person is, what the current situation is, and the recent messages that the reply must answer.
    Write that context into two runtime files:
@@ -27,8 +27,7 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
    Use `scene.md` for distilled context and `dialogue.md` for raw conversation. Do not dump the entire chat history into `scene.md`.
 3. Render the prompt package.
    Run `python3 skills/twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `weclone/`; pass `--persona-dir <dir>` only when overriding that location.
-   The script injects `scene.md` into the `Runtime Scene` section of the final prompt and `dialogue.md` into `Active Dialogue`. The clone model should see those rendered sections, not the original surrounding task thread.
-4. Invoke the model with the rendered prompt only.
+   The script injects `scene.md` into the `Runtime Scene` section of the final prompt and `dialogue.md` into `Active Dialogue`. 
    Treat the rendered prompt as the entire allowed context for that generation.
 5. Return a reviewable draft.
    Show the user the candidate reply plus risk flags. Do not send on the user's behalf yet.
@@ -52,7 +51,6 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
 
 - `assets/clone_prompt_template.md`: single source of truth for the isolated clone prompt seen by the downstream model.
 - `scripts/render_clone_prompt.py`: compile persona files and runtime context into the template, reading `weclone/` by default.
-- `references/runtime-workflow.md`: detailed execution sequence, isolation rules, and failure handling.
 
 ## Runtime Context Format
 
