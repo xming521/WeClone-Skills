@@ -10,7 +10,7 @@ Create or refresh the markdown persona pack for a user's digital twin. This skil
 ## Expected Inputs
 
 - A user name for template placeholders.
-- An optional target directory. Default to `weclone/` at the repo root.
+- An optional target directory. Default to `ai_twin/` at the repo root.
 - An optional template language. Supported values: `en` and `zh`. Default to `en`.
 - Explicit approval before overwriting existing persona files.
 
@@ -27,7 +27,7 @@ Create or refresh the markdown persona pack for a user's digital twin. This skil
 
 ## Files And Resources
 
-- `scripts/init_twin_profile.py`: scaffold the default `weclone/` persona directory from bundled templates.
+- `scripts/init_twin_profile.py`: scaffold the default `ai_twin/` persona directory from bundled templates.
 - `assets/persona-pack/`: starter markdown templates for `profile.md`, `state.md`, `persona_examples.md`, and `guardrails.md`, plus `*.zh.md` Chinese variants.
 
 ## Output Contract

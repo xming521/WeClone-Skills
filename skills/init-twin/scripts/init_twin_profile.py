@@ -26,7 +26,7 @@ LANGUAGE_ALIASES = {
 
 
 def default_persona_dir() -> Path:
-    return Path(__file__).resolve().parent.parent.parent.parent / "weclone"
+    return Path(__file__).resolve().parent.parent.parent.parent / "ai_twin"
 
 
 def parse_args() -> argparse.Namespace:
@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
         "output_dir",
         nargs="?",
         default=str(default_persona_dir()),
-        help="Directory to create or populate (default: repo-root/weclone)",
+        help="Directory to create or populate (default: repo-root/ai_twin)",
     )
     parser.add_argument(
         "--user-name",

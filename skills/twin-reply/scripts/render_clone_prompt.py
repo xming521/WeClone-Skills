@@ -23,7 +23,7 @@ TEMPLATE_FILE_NAME = "clone_prompt_template.md"
 
 
 def default_persona_dir() -> Path:
-    return Path(__file__).resolve().parent.parent.parent.parent / "weclone"
+    return Path(__file__).resolve().parent.parent.parent.parent / "ai_twin"
 
 
 def default_template_path() -> Path:
@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--persona-dir",
         default=str(default_persona_dir()),
-        help="Directory containing persona markdown files (default: repo-root/weclone)",
+        help="Directory containing persona markdown files (default: repo-root/ai_twin)",
     )
     parser.add_argument(
         "--scene",

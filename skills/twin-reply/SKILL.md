@@ -9,11 +9,11 @@ Assemble an isolated prompt package that lets a separate model imitate one user'
 
 ## Expected Inputs
 
-- A prepared persona directory. Default to `weclone/` at the repo root, containing `profile.md`, `persona_examples.md`, `guardrails.md`, and optional `state.md`.
+- A prepared persona directory. Default to `ai_twin/` at the repo root, containing `profile.md`, `persona_examples.md`, `guardrails.md`, and optional `state.md`.
 - Runtime context: one short scene summary and one dialogue window.
 - Explicit approval from the user before any outbound send.
 
-If the persona directory does not exist yet, use `$init-twin` first to scaffold the default `weclone/` directory, then ask the user to fill the generated templates before drafting.
+If the persona directory does not exist yet, use `$init-twin` first to scaffold the default `ai_twin/` directory, then ask the user to fill the generated templates before drafting.
 
 ## Core Workflow
 
@@ -28,7 +28,7 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
    - `dialogue.md`: the active message window, usually the recent turns that the candidate reply is directly answering. Keep the original wording and speaker attribution when possible.
    Use `scene.md` for distilled context and `dialogue.md` for raw conversation. Do not dump the entire chat history into `scene.md`.
 3. Render the prompt package.
-   Run `python3 skills/twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `weclone/`; pass `--persona-dir <dir>` only when overriding that location.
+   Run `python3 skills/twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `ai_twin/`; pass `--persona-dir <dir>` only when overriding that location.
    The script injects `scene.md` into the `Runtime Scene` section of the final prompt and `dialogue.md` into `Active Dialogue`. 
    Treat the rendered prompt as the entire allowed context for that generation.
 5. Return a reviewable draft.
@@ -53,7 +53,7 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
 ## Files And Resources
 
 - `assets/clone_prompt_template.md`: single source of truth for the isolated clone prompt seen by the downstream model.
-- `scripts/render_clone_prompt.py`: compile persona files and runtime context into the template, reading `weclone/` by default.
+- `scripts/render_clone_prompt.py`: compile persona files and runtime context into the template, reading `ai_twin/` by default.
 
 ## Runtime Context Format
 
