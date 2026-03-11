@@ -8,6 +8,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_PATH = REPO_ROOT / "skills" / "twin-reply" / "scripts" / "render_clone_prompt.py"
 TEMPLATE_PATH = REPO_ROOT / "skills" / "twin-reply" / "assets" / "clone_prompt_template.md"
+EXAMPLES_ROOT = REPO_ROOT / "examples"
 
 
 class RenderClonePromptCLITest(unittest.TestCase):
@@ -134,6 +135,64 @@ class RenderClonePromptCLITest(unittest.TestCase):
         self.assertIn("林澈", rendered)
         self.assertIn("微信私聊", rendered)
         self.assertEqual(result.stdout, "")
+
+
+class RenderClonePromptExamplesCLITest(unittest.TestCase):
+    def test_example_persona_packs_render_successfully(self) -> None:
+        examples = [
+            (
+                "zh/social-content-twitter-fan-dm",
+                "平台：Twitter/X 私信。",
+                "能不能请你帮我看看？",
+            ),
+            (
+                "zh/workplace-email-draft",
+                "平台：Email。",
+                "could you review the renewal email copy",
+            ),
+            (
+                "en/social-content-twitter-fan-dm",
+                "Platform: Twitter/X DM.",
+                "Would you mind taking a look?",
+            ),
+            (
+                "en/workplace-email-draft",
+                "Platform: Email.",
+                "could you review the renewal email copy",
+            ),
+        ]
+
+        for example_name, expected_scene, expected_dialogue in examples:
+            with self.subTest(example=example_name):
+                example_dir = EXAMPLES_ROOT / example_name
+                command = [
+                    sys.executable,
+                    str(SCRIPT_PATH),
+                    "--persona-dir",
+                    str(example_dir),
+                    "--scene",
+                    str(example_dir / "scene.md"),
+                    "--dialogue",
+                    str(example_dir / "dialogue.md"),
+                    "--template",
+                    str(TEMPLATE_PATH),
+                ]
+
+                result = subprocess.run(
+                    command,
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+
+                self.assertEqual(result.returncode, 0, msg=result.stderr)
+                self.assertIn("# Twin Reply Isolated Prompt", result.stdout)
+                self.assertIn("## Persona File: profile.md", result.stdout)
+                self.assertIn("## Persona File: guardrails.md", result.stdout)
+                self.assertIn(expected_scene, result.stdout)
+                self.assertIn(expected_dialogue, result.stdout)
+                self.assertNotIn("{{PERSONA_SECTIONS}}", result.stdout)
+                self.assertEqual(result.stderr, "")
 
 
 if __name__ == "__main__":
