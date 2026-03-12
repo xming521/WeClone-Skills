@@ -1,6 +1,14 @@
 ---
 name: weclone-twin-reply
 description: Build a review-gated digital twin reply from persona markdown, persona examples, and live conversation context. Use when you need to imitate a specific user's chat style, draft a reply on the user's behalf, or generate a persona-consistent message candidate from an existing persona pack.
+version: 0.1.0
+emoji: "✍️"
+homepage: "https://github.com/xming521/WeClone-Skill"
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
 ---
 
 # WeClone Twin Reply

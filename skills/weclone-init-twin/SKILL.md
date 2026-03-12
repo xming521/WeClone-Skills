@@ -1,6 +1,14 @@
 ---
 name: weclone-init-twin
 description: Scaffold a digital twin persona directory with markdown templates such as profile, state, persona examples, and guardrails. Use when the user wants to initialize, bootstrap, reset, or regenerate the persona files that weclone-twin-reply will read.
+version: 0.1.0
+emoji: "🧩"
+homepage: "https://github.com/xming521/WeClone-Skill"
+metadata:
+  openclaw:
+    requires:
+      bins:
+        - python3
 ---
 
 # WeClone Init Twin Profile
