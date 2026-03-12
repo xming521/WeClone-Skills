@@ -25,8 +25,10 @@
 ```bash
 npx skills add xming521/WeClone-Skills
 ```
-
-
+### 直接告诉 Agent
+```bash
+请帮我安装 github.com/xming521/WeClone-Skills 中的 Skills
+```
 ## 工作流
 
 ### 1. 初始化分身人格包
