@@ -7,8 +7,8 @@
  `WeClone-Skill` 用一套轻量的人格包，把“像某个人一样回复”这件事拆成可维护、可审阅的工作流。
 先定义人设与边界，再注入当前回复场景信息，最后给人审阅。仓库核心分成两个技能：
 
-- 🧩 `init-twin`：初始化分身人格包模板
-- ✍️ `twin-reply`：把分身人格文件和当前场景拼装成隔离提示词，用于起草回复
+- 🧩 `weclone-init-twin`：初始化分身人格包模板
+- ✍️ `weclone-twin-reply`：把分身人格文件和当前场景拼装成隔离提示词，用于起草回复
 
 
 ## ✨ 使用场景
@@ -31,7 +31,7 @@ npx skills add xming521/WeClone-Skills
 
 ### 1. 初始化分身人格包
 
-通过 `init-twin` 生成一组 markdown 文件：
+通过 `weclone-init-twin` 生成一组 markdown 文件：
 
 - `profile.md`：身份信息、性格、对话风格、价值观、世界观、决策方式
 - `persona_examples.md`：被克隆人的真实回复样例
@@ -51,7 +51,7 @@ npx skills add xming521/WeClone-Skills
 
 ### 4. 渲染隔离提示词
 
-通过 `twin-reply` 把人格文件和运行时信息组合成单一提示词包，交给下游模型独立生成草稿。
+通过 `weclone-twin-reply` 把人格文件和运行时信息组合成单一提示词包，交给下游模型独立生成草稿。
 
 ### 5. 人工审阅后再发送
 
@@ -65,13 +65,13 @@ npx skills add xming521/WeClone-Skills
 在仓库根目录生成默认的英文 `ai_twin/`：
 
 ```bash
-python3 skills/init-twin/scripts/init_twin_profile.py --user-name "Alex"
+python3 skills/weclone-init-twin/scripts/init_twin_profile.py --user-name "Alex"
 ```
 
 生成中文人格包到自定义目录：
 
 ```bash
-python3 skills/init-twin/scripts/init_twin_profile.py \
+python3 skills/weclone-init-twin/scripts/init_twin_profile.py \
   --user-name "张三" \
   --language zh \
   ./my_twin
@@ -82,7 +82,7 @@ python3 skills/init-twin/scripts/init_twin_profile.py \
 ### 基于人格包渲染提示词
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir ./ai_twin \
   --scene ./scene.md \
   --dialogue ./dialogue.md
@@ -91,7 +91,7 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 输出到文件：
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir ./ai_twin \
   --scene ./scene.md \
   --dialogue ./dialogue.md \
@@ -101,7 +101,7 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 只有在确实会影响回复结果时，再追加额外上下文：
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir ./ai_twin \
   --scene ./scene.md \
   --dialogue ./dialogue.md \
@@ -123,7 +123,7 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 示例命令：
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir examples/zh/social-content-twitter-fan-dm \
   --scene examples/zh/social-content-twitter-fan-dm/scene.md \
   --dialogue examples/zh/social-content-twitter-fan-dm/dialogue.md

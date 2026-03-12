@@ -1,9 +1,9 @@
 ---
-name: init-twin
-description: Scaffold a digital twin persona directory with markdown templates such as profile, state, persona examples, and guardrails. Use when the user wants to initialize, bootstrap, reset, or regenerate the persona files that twin-reply will read.
+name: weclone-init-twin
+description: Scaffold a digital twin persona directory with markdown templates such as profile, state, persona examples, and guardrails. Use when the user wants to initialize, bootstrap, reset, or regenerate the persona files that weclone-twin-reply will read.
 ---
 
-# Init Twin Profile
+# WeClone Init Twin Profile
 
 Create or refresh the markdown persona pack for a user's digital twin. This skill prepares files only. It does not draft replies.
 
@@ -19,11 +19,11 @@ Create or refresh the markdown persona pack for a user's digital twin. This skil
 1. Check whether the target persona directory already exists.
    If files already exist, do not overwrite them unless the user explicitly asks for regeneration.
 2. Scaffold the persona pack.
-   Run `python3 skills/init-twin/scripts/init_twin_profile.py --user-name <name> --language <en|zh> [output_dir]`.
+   Run `python3 skills/weclone-init-twin/scripts/init_twin_profile.py --user-name <name> --language <en|zh> [output_dir]`.
 3. Regenerate only with explicit overwrite approval.
    Add `--force` only when the user clearly wants to replace existing files.
 4. Hand off to reply generation.
-   Tell the user to fill the generated markdown templates before using `$twin-reply`.
+   Tell the user to fill the generated markdown templates before using `$weclone-twin-reply`.
 
 ## Files And Resources
 

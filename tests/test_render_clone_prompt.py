@@ -6,8 +6,8 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SCRIPT_PATH = REPO_ROOT / "skills" / "twin-reply" / "scripts" / "render_clone_prompt.py"
-TEMPLATE_PATH = REPO_ROOT / "skills" / "twin-reply" / "assets" / "clone_prompt_template.md"
+SCRIPT_PATH = REPO_ROOT / "skills" / "weclone-twin-reply" / "scripts" / "render_clone_prompt.py"
+TEMPLATE_PATH = REPO_ROOT / "skills" / "weclone-twin-reply" / "assets" / "clone_prompt_template.md"
 EXAMPLES_ROOT = REPO_ROOT / "examples"
 
 
@@ -162,8 +162,8 @@ class RenderClonePromptExamplesCLITest(unittest.TestCase):
             ),
             (
                 "zh/digital-legacy-memorial-reply",
-                "平台：Email / 微信。",
-                "今年线下活动还想继续用一下",
+                "平台：微信。",
+                "如果你还会回我，你大概会跟我说什么？",
             ),
             (
                 "en/social-content-twitter-fan-dm",
@@ -187,8 +187,8 @@ class RenderClonePromptExamplesCLITest(unittest.TestCase):
             ),
             (
                 "en/digital-legacy-memorial-reply",
-                "Platform: Email / WeChat.",
-                "we would like to reuse the image set",
+                "Platform: WeChat.",
+                "If you could still answer me, what do you think you would say?",
             ),
         ]
 

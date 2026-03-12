@@ -1,9 +1,9 @@
 ---
-name: twin-reply
+name: weclone-twin-reply
 description: Build a review-gated digital twin reply from persona markdown, persona examples, and live conversation context. Use when you need to imitate a specific user's chat style, draft a reply on the user's behalf, or generate a persona-consistent message candidate from an existing persona pack.
 ---
 
-# Twin Reply
+# WeClone Twin Reply
 
 Assemble an isolated prompt package that lets a separate model imitate one user's messaging style, personality, values, and worldview from markdown persona files and persona examples. Draft first, review second, send last.
 
@@ -13,12 +13,12 @@ Assemble an isolated prompt package that lets a separate model imitate one user'
 - Runtime context: one short scene summary and one dialogue window.
 - Explicit approval from the user before any outbound send.
 
-If the persona directory does not exist yet, use `$init-twin` first to scaffold the default `ai_twin/` directory, then ask the user to fill the generated templates before drafting.
+If the persona directory does not exist yet, use `$weclone-init-twin` first to scaffold the default `ai_twin/` directory, then ask the user to fill the generated templates before drafting.
 
 ## Core Workflow
 
 1. Confirm that the persona pack already exists.
-   If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$init-twin`.Confirm that the persona files are filled with real content rather than placeholders. 
+   If `profile.md`, `persona_examples.md`, or `guardrails.md` are missing, stop and hand off to `$weclone-init-twin`. Confirm that the persona files are filled with real content rather than placeholders.
 2. Gather the minimum high-signal context.
    Include who the other person is, what the current situation is, and the recent messages that the reply must answer.
    Before drafting, determine whether the available context is sufficient to answer faithfully and safely.
@@ -28,7 +28,7 @@ If the persona directory does not exist yet, use `$init-twin` first to scaffold 
    - `dialogue.md`: the active message window, usually the recent turns that the candidate reply is directly answering. Keep the original wording and speaker attribution when possible.
    Use `scene.md` for distilled context and `dialogue.md` for raw conversation. Do not dump the entire chat history into `scene.md`.
 3. Render the prompt package.
-   Run `python3 skills/twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `ai_twin/`; pass `--persona-dir <dir>` only when overriding that location.
+   Run `python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py --scene <scene.md> --dialogue <dialogue.md> [--extra-context <file>]`. By default it reads persona files from `ai_twin/`; pass `--persona-dir <dir>` only when overriding that location.
    The script injects `scene.md` into the `Runtime Scene` section of the final prompt and `dialogue.md` into `Active Dialogue`. 
    Treat the rendered prompt as the entire allowed context for that generation.
 5. Return a reviewable draft.

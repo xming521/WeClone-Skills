@@ -24,7 +24,7 @@
 ## 渲染中文样例
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir examples/zh/social-content-twitter-fan-dm \
   --scene examples/zh/social-content-twitter-fan-dm/scene.md \
   --dialogue examples/zh/social-content-twitter-fan-dm/dialogue.md
@@ -33,7 +33,7 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 ## 渲染英文样例
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir examples/en/workplace-email-draft \
   --scene examples/en/workplace-email-draft/scene.md \
   --dialogue examples/en/workplace-email-draft/dialogue.md
@@ -42,7 +42,7 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 ## 渲染新增中文销售样例
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir examples/zh/sales-copy-hubspot-wecom \
   --scene examples/zh/sales-copy-hubspot-wecom/scene.md \
   --dialogue examples/zh/sales-copy-hubspot-wecom/dialogue.md

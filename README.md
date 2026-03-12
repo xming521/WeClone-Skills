@@ -6,8 +6,8 @@
 
 `WeClone-Skill` turns a lightweight persona pack into a reusable prompt workflow for "AI twin" style drafting. The repository is intentionally split into two skills:
 
-- `init-twin`: scaffold a persona pack with markdown templates.
-- `twin-reply`: compile persona files plus runtime context into an isolated prompt for drafting replies.
+- `weclone-init-twin`: scaffold a persona pack with markdown templates.
+- `weclone-twin-reply`: compile persona files plus runtime context into an isolated prompt for drafting replies.
 
 The result is a pragmatic workflow: define the user's identity and boundaries once, inject only the current scene and dialogue at runtime, then review the draft before anything is sent.
 
@@ -29,7 +29,7 @@ Typical use cases:
 
 ### 1. Initialize a persona pack
 
-Use `init-twin` to create a directory containing:
+Use `weclone-init-twin` to create a directory containing:
 
 - `profile.md`: stable identity, values, worldview, decision style
 - `state.md`: temporary status, goals, current constraints
@@ -49,7 +49,7 @@ For each drafting task, provide:
 
 ### 4. Render an isolated prompt
 
-Use `twin-reply` to combine persona files and runtime context into one prompt package. That rendered prompt is designed to be passed to a downstream model in isolation.
+Use `weclone-twin-reply` to combine persona files and runtime context into one prompt package. That rendered prompt is designed to be passed to a downstream model in isolation.
 
 ### 5. Review before sending
 
@@ -60,11 +60,11 @@ This repo is built around a review gate. It helps draft; it does not silently au
 ```text
 .
 ├── skills/
-│   ├── init-twin/
+│   ├── weclone-init-twin/
 │   │   ├── SKILL.md
 │   │   ├── scripts/init_twin_profile.py
 │   │   └── assets/persona-pack/
-│   └── twin-reply/
+│   └── weclone-twin-reply/
 │       ├── SKILL.md
 │       ├── scripts/render_clone_prompt.py
 │       └── assets/clone_prompt_template.md
@@ -81,13 +81,13 @@ This repo is built around a review gate. It helps draft; it does not silently au
 Create the default `ai_twin/` directory in English:
 
 ```bash
-python3 skills/init-twin/scripts/init_twin_profile.py --user-name "Alex"
+python3 skills/weclone-init-twin/scripts/init_twin_profile.py --user-name "Alex"
 ```
 
 Create a Chinese persona pack in a custom directory:
 
 ```bash
-python3 skills/init-twin/scripts/init_twin_profile.py \
+python3 skills/weclone-init-twin/scripts/init_twin_profile.py \
   --user-name "张三" \
   --language zh \
   ./my_twin
@@ -98,7 +98,7 @@ If the target files already exist, the script refuses to overwrite them unless y
 ### Render a prompt from a persona pack
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir ./ai_twin \
   --scene ./scene.md \
   --dialogue ./dialogue.md
@@ -107,7 +107,7 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 Write the rendered prompt to a file:
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir ./ai_twin \
   --scene ./scene.md \
   --dialogue ./dialogue.md \
@@ -117,7 +117,7 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 Add extra runtime context only when it materially changes the draft:
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir ./ai_twin \
   --scene ./scene.md \
   --dialogue ./dialogue.md \
@@ -142,7 +142,7 @@ The repository ships with bilingual examples under [examples/README.md](examples
 Example render:
 
 ```bash
-python3 skills/twin-reply/scripts/render_clone_prompt.py \
+python3 skills/weclone-twin-reply/scripts/render_clone_prompt.py \
   --persona-dir examples/en/workplace-email-draft \
   --scene examples/en/workplace-email-draft/scene.md \
   --dialogue examples/en/workplace-email-draft/dialogue.md

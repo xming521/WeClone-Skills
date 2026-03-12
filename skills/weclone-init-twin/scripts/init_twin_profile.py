@@ -31,7 +31,7 @@ def default_persona_dir() -> Path:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Create a persona directory for init-twin.",
+        description="Create a persona directory for weclone-init-twin.",
     )
     parser.add_argument(
         "output_dir",
