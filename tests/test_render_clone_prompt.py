@@ -151,6 +151,21 @@ class RenderClonePromptExamplesCLITest(unittest.TestCase):
                 "could you review the renewal email copy",
             ),
             (
+                "zh/sales-copy-hubspot-wecom",
+                "平台：HubSpot 线索记录 + 企业微信跟进。",
+                "你这边能不能先帮我申请一个更积极的价格？",
+            ),
+            (
+                "zh/companion-chat-whatsapp-qq",
+                "平台：WhatsApp 家人聊天。",
+                "我这两天不知道为什么，总是晚上睡不着",
+            ),
+            (
+                "zh/digital-legacy-memorial-reply",
+                "平台：Email / 微信。",
+                "今年线下活动还想继续用一下",
+            ),
+            (
                 "en/social-content-twitter-fan-dm",
                 "Platform: Twitter/X DM.",
                 "Would you mind taking a look?",
@@ -159,6 +174,21 @@ class RenderClonePromptExamplesCLITest(unittest.TestCase):
                 "en/workplace-email-draft",
                 "Platform: Email.",
                 "could you review the renewal email copy",
+            ),
+            (
+                "en/sales-copy-hubspot-wecom",
+                "Platform: HubSpot lead notes plus WeCom follow-up.",
+                "can you help me get a more aggressive price?",
+            ),
+            (
+                "en/companion-chat-whatsapp-qq",
+                "Platform: WhatsApp family chat.",
+                "I do not know why, but I keep lying awake at night",
+            ),
+            (
+                "en/digital-legacy-memorial-reply",
+                "Platform: Email / WeChat.",
+                "we would like to reuse the image set",
             ),
         ]
 

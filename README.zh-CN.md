@@ -14,9 +14,11 @@
 ## 使用场景
 
 - 个人 AI 助手代写消息
-- 创作者或社媒私信草稿生成
+- 家人或朋友关系里的“分身陪伴”聊天
+- 创作者或社媒私信消息回复
 - 职场邮件起草与润色
-- 保留人工审核环节的数字分身实验
+- 销售在 HubSpot / 企业微信中的跟进话术复制
+- 身后数字遗产与纪念账号的必要回复起草
 
 ## 工作流
 
@@ -105,6 +107,9 @@ python3 skills/twin-reply/scripts/render_clone_prompt.py \
 
 - `examples/zh/social-content-twitter-fan-dm`
 - `examples/zh/workplace-email-draft`
+- `examples/zh/sales-copy-hubspot-wecom`
+- `examples/zh/companion-chat-whatsapp-qq`
+- `examples/zh/digital-legacy-memorial-reply`
 - `examples/en/social-content-twitter-fan-dm`
 - `examples/en/workplace-email-draft`
 

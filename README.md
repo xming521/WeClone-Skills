@@ -20,6 +20,9 @@ Typical use cases:
 - Personal AI assistant that replies in a consistent tone
 - Creator or social-media DM drafting
 - Workplace email drafting with style and boundary control
+- Sales follow-up scripting across HubSpot and WeCom
+- Companion-style chat drafting for family or close friends
+- Digital legacy and memorial-account reply handling
 - Safe digital twin experiments where human review stays in the loop
 
 ## Workflow
@@ -127,8 +130,14 @@ The repository ships with bilingual examples under [examples/README.md](examples
 
 - `examples/zh/social-content-twitter-fan-dm`
 - `examples/zh/workplace-email-draft`
+- `examples/zh/sales-copy-hubspot-wecom`
+- `examples/zh/companion-chat-whatsapp-qq`
+- `examples/zh/digital-legacy-memorial-reply`
 - `examples/en/social-content-twitter-fan-dm`
 - `examples/en/workplace-email-draft`
+- `examples/en/sales-copy-hubspot-wecom`
+- `examples/en/companion-chat-whatsapp-qq`
+- `examples/en/digital-legacy-memorial-reply`
 
 Example render:
 
