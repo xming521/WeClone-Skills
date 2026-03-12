@@ -22,7 +22,7 @@ Typical use cases:
 - Workplace email drafting with style and boundary control
 - Sales follow-up scripting across HubSpot and WeCom
 - Companion-style chat drafting for family or close friends
-- Digital legacy and memorial-account reply handling
+- Digital legacy persona preservation based on a deceased person's historical chats, writing, and voice material for memorial-style conversation
 - Safe digital twin experiments where human review stays in the loop
 
 ## Workflow
